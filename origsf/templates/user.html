@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.name }} &middot; Friends Answers{% endblock %}
+
+{% block body %}
+<!--
+<div id="answer">
+-->
+    <h1>    <img class="pic" height="50" width="50"
+             src="{{ user.picture }}">
+    <a href="/user/{{ user.user_id }}"> {{ user.name }} &nbsp; Answers</a></h1>
+
+    <div class="green-box2">
+    <table>
+      <thead>
+        <tr>
+          <td>State</td>
+          <td>Answer</td>
+          <td>State Flower</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for quiz in friends_answer %}
+        <tr>
+          <td>{{ quiz.state }}</td>
+          <td>{{ quiz.pretty_answer }}</td>
+          <td>({{ quiz.the_state_flower }})</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+<!--    Where will this land?  <br> <br> <br> <br> <br> <br> Here.
+</div>
+-->
+{% endblock %}

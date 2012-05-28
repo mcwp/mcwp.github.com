@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+{% block body %}
+<div class="welcome">
+  <h1>Welcome to State Flower</h1>
+
+  <div class="info">
+    <p>
+      This is a practice application that lets you test your state flowers 
+      knowledge and share the results with your friends.
+    </p>
+    <p>
+      In order to use State Flower you must sign in with your
+      Facebook account.
+    </p>
+  </div>
+
+  <div id="login-flow">
+    <fb:login-button show-faces="true"></fb:login-button>
+  </div>
+</div>
+<img class="promo" alt="Welcome to State Flower" src="/splash.jpg">
+{% endblock %}

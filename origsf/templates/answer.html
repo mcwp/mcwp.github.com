@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Your Answers{% endblock %}
+{% block body %}
+<div id="answer">
+  {% if user_answer %}
+  <div class="your-answer">
+    <h1>Your Answers</h1>
+    <table>
+      <thead>
+        <tr>
+          <td>State</td>
+          <td>Answer</td>
+          <td>State Flower</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for quiz in user_answer %}
+        <tr>
+          <td>{{ quiz.state }}</td>
+          <td>{{ quiz.pretty_answer }}</td>
+          <td>(<a href="{{ quiz.the_state_flower_url }}" target="_ref">{{ quiz.the_state_flower }}</a>)</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  <div class="main">
+    <h1>Do you know about U.S. state flowers?</h1>
+
+    <form action="/quiz" method="post">
+      <div style="display: none">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+      </div>
+
+      <div>
+        <label for="state">Pick any state:</label>
+        <select name="state">
+        {% for sc in state_choices %}
+        <option value="{{ sc }}">{{ sc }}</option>
+        {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label for="answer">What is the state flower?</label>
+        <select name="answer">
+        {% for fc in flower_choices %}
+        <option value="{{ fc }}">{{ fc }}</option>
+        {% endfor %}
+        </select>
+      </div>
+      <div class="buttons">
+        <input class="awesome green" type="submit" value="Show Answer">
+      </div>
+    </form>
+    <div class="text">
+    Disclaimer/References: All answers are my own interpretation of <a href="http://en.wikipedia.org/wiki/List_of_U.S._state_flowers" target="_ref">the data from Wikipedia</a>.  Comments or corrections?  <a href="http://www.facebook.com/apps/application.php?id=175527222496612" target="_fb">Please tell me here</a>.</p>
+    </div>
+  </div>
+
+  <div class="friends">
+    <h1>Friends</h1>
+
+    <div id="friends-answer">
+      {% if friends_answer %}
+      {% for quiz in friends_answer %}
+      <div class="quiz">
+        <div class="your-answer">
+        <table border="solid" border-width="2px">
+        <tbody ="recent-bd">
+        <tr>
+          <td><span class="state">{{ quiz.state }}</span></td>
+          <td><span class="panswer">{{ quiz.pretty_answer }}</span></td>
+          <td><span class="the_state_flower">({{ quiz.the_state_flower }})</span></td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+
+        <img class="pic" height="50" width="50"
+             src="{{ friends|get_picture:quiz.user_id }}">
+
+        <a class="name" href="/user/{{ quiz.user_id }}">
+          {{ friends|get_name:quiz.user_id }}
+        </a>
+        <div style="clear: both;"></div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div id="info">
+        You do not have any friends using State Flower yet!
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
