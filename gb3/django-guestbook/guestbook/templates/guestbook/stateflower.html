@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>State Flowers | Learning Bootstrap</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../../../media/style.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../../../media/assets/ico/favicon.ico">
+    <link rel="apple-touch-icon" href="../../../media/assets/ico/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../../../media/assets/ico/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../../../media/assets/ico/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="/guestbook/">SB</a> 
+          <ul class="nav">
+            <li class="active"><a href="/guestbook/welcome">Welcome</a></li>
+            <li><a href="/guestbook/states">States</a></li>
+            <li><a href="/guestbook/flowers">Flowers</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+	<hgroup>
+          <h1>State Flowers</h1>
+	  <h2>Can you find your state flower?</h2>
+	</hgroup>
+        <p><a class="btn primary large pull-right">Contact me &raquo;</a></p>
+      </div>
+
+      <ul class="media-grid">
+	<li>
+	  <a href="#">
+	    <img width="161" height="161" src="../../../media/stateflower/img/125px-California_poppy.jpg" />
+	  </a>
+	</li>
+	<li>
+	  <a href="#">
+	    <img width="161" height="161" src="../../../media/stateflower/img/125px-Forget-me-not_close_600.jpg" />
+	  </a>
+	</li>
+	<li>
+	  <a href="#">
+	    <img width="161" height="161" src="../../../media/stateflower/img/125px-OrangeBloss_wb.jpg" />
+	  </a>
+	</li>
+	<li>
+	  <a href="#">
+	    <img width="161" height="161" src="../../../media/stateflower/img/125px-Saguaro_cactus_blossoms.jpg" />
+	  </a>
+	</li>
+	<li>
+	  <a href="#">
+	    <img width="161" height="161" src="../../../media/stateflower/img/125px-Columbine_flower.JPG" />
+	  </a>
+	</li>
+      </ul><!-- end media-grid -->
+
+      <!-- Feature row 1 -->
+      <div class="row">
+        <div class="span-two-thirds">
+	  {% extends 'base2.html' %}
+	  {% block content %}
+	    <h2>Top 10 Most Recent Guestbook Entries</h2>
+	    {% for state in states %}
+	      <blockquote>{{ state.name }}</blockquote>
+	    {% endfor %}
+
+	    <form action="/guestbook/sign" method="post">{% csrf_token %}
+	      <table>{{ form }}</table>
+	      <input type="submit" value="Sign Guestbook" />
+	    </form>
+	  {% endblock %}
+        </div>
+        <div class="span-one-third">
+          <h2>Project 1</h2>
+           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+       </div>
+      </div><!-- Feature row 1 -->
+      
+      <footer>
+        <p>&copy; Company 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
