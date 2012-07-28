@@ -85,11 +85,12 @@
         <div class="span-two-thirds">
 	  {% extends 'base2.html' %}
 	  {% block content %}
-	    <h2>Top 10 Most Recent Guestbook Entries</h2>
+	    <h2>For state in states loop</h2>
 	    {% for state in states %}
-	      <blockquote>{{ state.name }}</blockquote>
+	      <blockquote>{{ state }}</blockquote>
 	    {% endfor %}
 
+	    <h2>Sign Guestbook</h2>
 	    <form action="/guestbook/sign" method="post">{% csrf_token %}
 	      <table>{{ form }}</table>
 	      <input type="submit" value="Sign Guestbook" />

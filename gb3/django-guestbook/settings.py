@@ -4,7 +4,8 @@ import os
 
 DIRNAME = os.path.dirname(__file__)
 
-SECRET_KEY = '1234567'
+SECRET_KEY = '=r-$b*8hglm+858&9t043hlm6-&6-3d3vfc4((7yd0dbrakhvi'
+#SECRET_KEY = '1234567'
 
 INSTALLED_APPS = (
     'djangoappengine',

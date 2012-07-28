@@ -6,6 +6,7 @@ from django.views.generic.simple import direct_to_template
 from guestbook.forms import CreateGreetingForm
 from guestbook.models import Greeting
 from guestbook.models import State, Flower
+from guestbook import stateflowers
 import logging
 
 MEMCACHE_GREETINGS = 'greetings'
@@ -34,18 +35,28 @@ stash = """
 """
 
 
+# def list_states(request):
+#     states_q = State.objects.all()
+#     if len(states_q) >= 5:
+#         states = states_q[:5]
+#     else:
+#         states = []
+#     logging.info('list_states set states to %s', str(states))
+#     greetings = Greeting.objects.all().order_by('-date')[:10]
+#     cache.add(MEMCACHE_GREETINGS, greetings)
+#     return direct_to_template(request, 'guestbook/stateflower.html',
+#                               {'greetings': greetings,
+#                                'states': states,
+#                                'form': CreateGreetingForm()})
+
 def list_states(request):
-    states_q = State.objects.all()
-    if len(states_q) >= 5:
-        states = states_q[:5]
-    else:
-        states = []
-    logging.info('list_states set states to %s', str(states))
+    five_states = stateflowers.keys()[:5]
+    logging.info('list_states set states to %s', str(five_states))
     greetings = Greeting.objects.all().order_by('-date')[:10]
     cache.add(MEMCACHE_GREETINGS, greetings)
     return direct_to_template(request, 'guestbook/stateflower.html',
                               {'greetings': greetings,
-                               'states': states,
+                               'states': five_states,
                                'form': CreateGreetingForm()})
 
 def list_flowers(request):
