@@ -51,16 +51,17 @@
 	</hgroup>
         <p><a class="btn primary large pull-right">Contact me &raquo;</a></p>
       </div>
-
       <ul class="media-grid">
 	<li>
 	  <a href="#">
 	    <img width="161" height="161" src="../../../media/stateflower/img/125px-California_poppy.jpg" />
+ 	    what is this flower ...
 	  </a>
 	</li>
 	<li>
 	  <a href="#">
 	    <img width="161" height="161" src="../../../media/stateflower/img/125px-Forget-me-not_close_600.jpg" />
+	    and this one?
 	  </a>
 	</li>
 	<li>
@@ -80,22 +81,38 @@
 	</li>
       </ul><!-- end media-grid -->
 
+      <ul class="media-grid">
+        {% for state, flower_pic in pic_urls.items %}
+	<li>
+	  <a href="#">
+	    <img width="161" height="161" src={{ flower_pic }} />
+ 	    {{ state }}
+	  </a>
+	</li>
+	{% endfor %}
+      </ul><!-- end media-grid 2 -->
+      
       <!-- Feature row 1 -->
       <div class="row">
         <div class="span-two-thirds">
-	  {% extends 'base2.html' %}
-	  {% block content %}
 	    <h2>For state in states loop</h2>
 	    {% for state in states %}
 	      <blockquote>{{ state }}</blockquote>
 	    {% endfor %}
-
 	    <h2>Sign Guestbook</h2>
+  <a href="/accounts/create_user/">Create User</a>
+  Hello
+  {% if user.is_authenticated %}
+    {{ user.username }}
+    [<a href="{% url django.contrib.auth.views.logout %}">sign out</a>]
+  {% else %}
+    World!
+    [<a href="{% url django.contrib.auth.views.login %}">sign in</a>]
+  {% endif %}
 	    <form action="/guestbook/sign" method="post">{% csrf_token %}
 	      <table>{{ form }}</table>
 	      <input type="submit" value="Sign Guestbook" />
 	    </form>
-	  {% endblock %}
         </div>
         <div class="span-one-third">
           <h2>Project 1</h2>

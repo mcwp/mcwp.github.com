@@ -6,6 +6,7 @@ class Greeting(models.Model):
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
+
 class Flower(models.Model):
     picture = models.TextField()
 #    state = models.ForeignKey(State)
