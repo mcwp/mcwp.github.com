@@ -53,10 +53,11 @@ def list_states(request):
 #    five_states = stateflowers.keys()[:5]
     five_states = shorter
     logging.info('list_states set states to %s', str(five_states))
-#    greetings = Greeting.objects.all().order_by('-date')[:10]
-#    cache.add(MEMCACHE_GREETINGS, greetings)
+    greetings = Greeting.objects.all().order_by('-date')[:10]
+    cache.add(MEMCACHE_GREETINGS, greetings)
     return direct_to_template(request, 'guestbook/stateflower.html',
                               {'sf': stateflowers,
+                               'greetings': greetings,
                                'form': CreateGreetingForm()})
 
 def list_flowers(request):

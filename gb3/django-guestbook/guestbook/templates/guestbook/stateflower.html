@@ -66,28 +66,31 @@
       <!-- Feature row 1 -->
       <div class="row">
         <div class="span-two-thirds">
-	    <h2>For state in states loop</h2>
-	    {% for state in states %}
-	      <blockquote>{{ state }}</blockquote>
-	    {% endfor %}
-	    <h2>Sign Guestbook</h2>
-  <a href="/accounts/create_user/">Create User</a>
-  Hello
-  {% if user.is_authenticated %}
-    {{ user.username }}
-    [<a href="{% url django.contrib.auth.views.logout %}">sign out</a>]
-  {% else %}
-    World!
-    [<a href="{% url django.contrib.auth.views.login %}">sign in</a>]
-  {% endif %}
+	  <h2>Top 10 Most Recent Guestbook Entries</h2>
+	  {% for greeting in greetings %}
+	    {% if greeting.author %}
+	      <b>{{ greeting.author.username }}</b> wrote:
+	    {% else %}
+	      An anonymous person wrote:
+	    {% endif %}
+	    <blockquote>{{ greeting.content|escape }}</blockquote>
+	  {% endfor %}
+        </div>
+        <div class="span-one-third">
+	  <h2>Sign Guestbook</h2>
+	  <a href="/accounts/create_user/">Create User</a>
+	  Hello
+	  {% if user.is_authenticated %}
+	    {{ user.username }}
+	    [<a href="{% url django.contrib.auth.views.logout %}">sign out</a>]
+	  {% else %}
+	    World!
+	    [<a href="{% url django.contrib.auth.views.login %}">sign in</a>]
+	  {% endif %}
 	    <form action="/guestbook/sign" method="post">{% csrf_token %}
 	      <table>{{ form }}</table>
 	      <input type="submit" value="Sign Guestbook" />
 	    </form>
-        </div>
-        <div class="span-one-third">
-          <h2>Project 1</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
        </div>
       </div><!-- Feature row 1 -->
       
