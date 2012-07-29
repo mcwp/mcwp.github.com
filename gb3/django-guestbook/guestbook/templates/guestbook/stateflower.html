@@ -51,41 +51,12 @@
 	</hgroup>
         <p><a class="btn primary large pull-right">Contact me &raquo;</a></p>
       </div>
-      <ul class="media-grid">
-	<li>
-	  <a href="#">
-	    <img width="161" height="161" src="../../../media/stateflower/img/125px-California_poppy.jpg" />
- 	    what is this flower ...
-	  </a>
-	</li>
-	<li>
-	  <a href="#">
-	    <img width="161" height="161" src="../../../media/stateflower/img/125px-Forget-me-not_close_600.jpg" />
-	    and this one?
-	  </a>
-	</li>
-	<li>
-	  <a href="#">
-	    <img width="161" height="161" src="../../../media/stateflower/img/125px-OrangeBloss_wb.jpg" />
-	  </a>
-	</li>
-	<li>
-	  <a href="#">
-	    <img width="161" height="161" src="../../../media/stateflower/img/125px-Saguaro_cactus_blossoms.jpg" />
-	  </a>
-	</li>
-	<li>
-	  <a href="#">
-	    <img width="161" height="161" src="../../../media/stateflower/img/125px-Columbine_flower.JPG" />
-	  </a>
-	</li>
-      </ul><!-- end media-grid -->
 
       <ul class="media-grid">
-        {% for state, flower_pic in pic_urls.items %}
+        {% for state, state_info in sf.items %}
 	<li>
 	  <a href="#">
-	    <img width="161" height="161" src={{ flower_pic }} />
+	    <img width="161" height="161" src={{ state_info.flower_pic }} />
  	    {{ state }}
 	  </a>
 	</li>

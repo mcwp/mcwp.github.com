@@ -6,7 +6,7 @@ from django.views.generic.simple import direct_to_template
 from guestbook.forms import CreateGreetingForm
 from guestbook.models import Greeting
 from guestbook.models import State, Flower
-from guestbook import pic_urls, shorter
+from guestbook import pic_urls, shorter, stateflowers
 import logging
 
 MEMCACHE_GREETINGS = 'greetings'
@@ -56,7 +56,7 @@ def list_states(request):
 #    greetings = Greeting.objects.all().order_by('-date')[:10]
 #    cache.add(MEMCACHE_GREETINGS, greetings)
     return direct_to_template(request, 'guestbook/stateflower.html',
-                              {'pic_urls': five_states,
+                              {'sf': stateflowers,
                                'form': CreateGreetingForm()})
 
 def list_flowers(request):
